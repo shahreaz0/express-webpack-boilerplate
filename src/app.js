@@ -1,6 +1,8 @@
 //modules
 const path = require("path");
 const express = require("express");
+require("dotenv").config();
+console.log(process.env.MY_VAR);
 //Router()
 const homeRouter = require("./routes/home");
 
