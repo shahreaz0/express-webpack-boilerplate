@@ -1,13 +1,23 @@
 const path = require("path");
 const nodeExternals = require("webpack-node-externals");
 
+// front
 const frontConfig = {
-	//bundle-front.js
+	target: "web",
+	entry: {
+		app: ["./public/js/code.js"],
+	},
+	output: {
+		path: path.resolve(__dirname, "./build"),
+		filename: "bundle-front.js",
+	},
 };
+
+// back
 const backConfig = {
 	target: "node",
 	entry: {
-		app: ["./src/bin/www"],
+		app: ["./src/app.js"],
 	},
 	output: {
 		path: path.resolve(__dirname, "./build"),
@@ -20,4 +30,4 @@ const backConfig = {
 };
 
 // Combined 'module.exports'
-module.exports = [backConfig];
+module.exports = [backConfig, frontConfig];

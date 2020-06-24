@@ -1,22 +1,27 @@
-//modules
+// modules
 const path = require("path");
 const express = require("express");
+const chalk = require("chalk");
 require("dotenv").config();
-//Router()
-const homeRouter = require("./routes/home");
 
-//express config
+// routes
+const homeRoutes = require("./routes/home");
+
+// express config
 const app = express();
-//set
 app.set("views", path.join("views"));
 app.set("view engine", "ejs");
-//use
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join("public")));
 
-//routes
-app.use("/", homeRouter);
+// routes config
+app.use("/", homeRoutes);
 
-//exports
-module.exports = app;
+// server
+const port = process.env.PORT || "3000";
+app.listen(port, () => {
+	console.log(chalk.blue("====================="));
+	console.log(chalk.bold(`http://localhost:${chalk.bold.red(port)}`));
+	console.log(chalk.blue("====================="));
+});

@@ -1,12 +1,10 @@
 //modules
-const express = require("express");
+const router = require("express").Router();
 
-//express config
-const router = express.Router();
-
-// GET /
+// GET --> /
 router.get("/", function (req, res, next) {
 	res.render("home", { title: "Express" });
 });
 
+//exports
 module.exports = router;
